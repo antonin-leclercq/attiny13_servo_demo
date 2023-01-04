@@ -6,7 +6,7 @@
 #include <avr/io.h>
 
 #define BASE_COUNTER_VALUE 18
-#define COUNTER_COEFF 0.08
+#define COUNTER_COEFF 0.08f
 
 void ADC_INIT(void) {
 	/*
@@ -87,7 +87,7 @@ int main(void) {
 		*/
 		
 		// Convert 0..255 to 0..20 for adc_buffer
-		adc_buffer = (uint8_t)((float)adc_buffer * 0.08f);
+		adc_buffer = (uint8_t)((float)adc_buffer * COUNTER_COEFF);
 		
 		// adding OCR0A min value and updating register
 		OCR0A = BASE_COUNTER_VALUE + adc_buffer;
